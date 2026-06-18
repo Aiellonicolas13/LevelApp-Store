@@ -8,7 +8,7 @@ const HOST = '127.0.0.1';
 
 app.use(express.json());
 
-app.use('/api/juegos', routerBack);
+app.use('/juegos', routerBack);
 
 app.get('/', (req, res) => {
     console.log('* Entrando a la raiz *');

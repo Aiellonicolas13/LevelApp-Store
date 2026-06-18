@@ -9,7 +9,6 @@ exports.readAllJuegos = async (req, res) => {
     } catch (error) {
         console.log('* Error en readAllJuegos *', error);
         res.status(500).json({
-            code: 500,
             message: 'Error al obtener los juegos'
         });
     }
@@ -21,14 +20,16 @@ exports.readJuegoById = async (req, res) => {
         const {id} = req.params;
         const juego = await serviceBack.getJuegoByIdService(id);
 
-        if (!juego) 
-            return res.status(404).json({ message: `Juego con id ${id} no encontrado` });
-            res.status(200).json(juego);
-            
+        if (!juego){ 
+            return res.status(404).json({
+             message: `Juego con id ${id} no encontrado`
+            });
+        }
+        res.status(200).json(juego);
+
     } catch (error) {
         console.log('* Error en readJuegoById *', error);
         res.status(500).json({
-            code: 500,
             message: 'Error al obtener el juego'
         });
     }
