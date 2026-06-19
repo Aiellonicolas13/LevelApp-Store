@@ -20,3 +20,29 @@ exports.getJuegoByIdService = async (id) => {
         console.log('* Error en getJuegoByIdService *', error);
     }
 };
+exports.getJuegoByIdComprasService = async (id) => {
+    try {
+        console.log('* SERVICE - getComprasByIdService *');
+        return await repositoryBack.getJuegoByIdComprasRepository(id);
+
+    } catch (error) {
+        console.log('* Error en getComprasByIdService *', error);
+    }
+};
+exports.getAllComprasService = async () => {
+    try {
+        console.log('* SERVICE - getAllComprasService *');
+        const compras = await repositoryBack.getAllComprasRepository();
+        return compras;
+        
+    } catch (error) {
+        console.log('* Error en getAllComprasService *', error);
+    }
+};
+exports.deleteJuegoByIdService = async (id) => {
+    try {        
+        return await repositoryBack.deleteJuegoByIdRepository(id)
+    } catch (error) {
+        console.log("Error en deleteJuegoByIdService", error)
+    }
+}
