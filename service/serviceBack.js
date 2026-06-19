@@ -11,6 +11,13 @@ exports.getAllJuegosService = async () => {
     }
 };
 
+exports.updateJuegoService = async (id , juego) => {
+    try {
+        return await repositoryBack.updateJuegoRepository(id,juego)
+    } catch (error) {
+        console.log( "Error en updateJuegoService()", error )
+    }
+}
 exports.getJuegoByIdService = async (id) => {
     try {
         console.log('* SERVICE - getJuegoByIdService *');

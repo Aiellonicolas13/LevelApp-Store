@@ -6,6 +6,9 @@ const routerBack = express.Router();
 routerBack.use(express.json());
 
 routerBack.get('/', controllerBack.readAllJuegos);
+
+routerBack.patch('/:id', controllerBack.updateJuego);
+
 routerBack.get('/compras', controllerBack.readAllCompras);
 routerBack.get('/:id', controllerBack.readJuegoById);
 routerBack.get('/:id/compras', controllerBack.readJuegoByIdCompras);
