@@ -18,7 +18,7 @@ exports.updateJuego = async (req, res) => {
     try {
         const id = req.params.id
         const juegoActualizado = req.body
-        console.log("CONTROLLER updateFrontendLanguage - id:", id, " - juegoactulizado: ", juegoActualizado)
+        console.log("controller-updateJuego - id:", id, " - juegoActulizado: ", juegoActualizado)
         const juego = await serviceBack.updateJuegoService(id, juegoActualizado)
 
         if(juego.length === 0){
@@ -29,7 +29,7 @@ exports.updateJuego = async (req, res) => {
         console.log("Error - CONTROLLER updateJegos", error)
         res.status(500).send({
             code: 500,
-            message: "Error al actualizar el lenguaje de frontend"
+            message: "Error al actualizar el juego"
         })
     }
 }
