@@ -53,3 +53,10 @@ exports.deleteJuegoByIdService = async (id) => {
         console.log("Error en deleteJuegoByIdService", error)
     }
 }
+exports.createJuegoService = async (juego) => {
+    try{
+        return await repositoryBack.createJuegoRepository(juego)
+    }catch (error) {
+        console.log("Error en createJuegoService", error)
+    }
+}
