@@ -16,5 +16,15 @@ module.exports = {
                     INNER JOIN Usuarios u ON c.IdUsuario = u.IdUsuario 
                     INNER JOIN Juegos j ON c.IdJuego = j.IdJuego`,
     deleteJuegoByIdCompras: `SELECT * FROM Compras WHERE IdJuego = 1;`,
-    deleteJuegoById:`DELETE FROM Juegos WHERE IdJuego = @id`
+    deleteJuegoById:`DELETE FROM Juegos WHERE IdJuego = @id`,
+    addJuego: `INSERT INTO Juegos
+            (Nombre
+           ,Precio
+           ,Stock
+           ,IdCategoria)
+     VALUES
+           (@Nombre
+           ,@Precio
+           ,@Stock
+           ,@IdCategoria);`
 }

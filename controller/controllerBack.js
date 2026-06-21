@@ -105,3 +105,18 @@ exports.deleteJuegoById = async (req, res) => {
         })
     }
 }
+
+// ---------------------------------
+
+exports.createJuego = async (req, res) => {
+    try {
+        const juego = req.body;
+        res.send(await serviceBack.createJuegoService(juego))
+    } catch (error) {
+        console.log("Error - controller createJuego", error)
+        res.status(500).send({
+            code: 500,
+            message: "Error al agregar el juego"
+        })
+    }
+}
