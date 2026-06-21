@@ -136,13 +136,13 @@ exports.createJuegoRepository = async(juego) => {
 
 
 
-    // ACA METODOS TABLA NUEVA //
+    // METODOS TABLA JuegosXUsuarios //
 
     exports.getJuegosByUsuarioRepository = async (idUsuario) => {
         try{
             const pool = await getSQLConnection();
             const resultado = await pool.request()
-            .input('idUsuario', sql.Int, idUsuario)
+            .input('IdUsuario', sql.Int, idUsuario)
             .query(queries.getJuegosByUsuario);
 
             return resultado.recordset;
@@ -152,29 +152,46 @@ exports.createJuegoRepository = async(juego) => {
 
     }
 
-
-
-
-
-    exports.addJuegoxUsuarioRepository = async () => {
+     exports.getUsuariosByJuegoRepository = async (idJuego) => {
         try{
             const pool = await getSQLConnection();
-            const resultado = pool.request();
+            const resultado = await pool.request()
+            .input('IdJuego', sql.Int, idJuego)
+            .query(queries.getUsuariosByJuego);
 
-            const juegosxusuario = await resultado.query(addJuegoxUsuario)
+            return resultado.recordset;
+        } catch(error){
+            console.log("Error en getUsuariosByJuegoRepository", error)
+        }
+
+    }
+
+
+    exports.addJuegoxUsuarioRepository = async (idJuego,idUsuario) => {
+        try{
+            const pool = await getSQLConnection();
+            const resultado = await pool.request()
+            .input('IdJuego', sql.Int, idJuego)
+            .input('IdUsuario', sql.Int, idUsuario)
+            .query(queries.addJuegoxUsuario);
+            
+            return resultado.rowsAffected;
         }catch(error){
             console.log("Error en addJuegoxUsuarioRepository", error)
         }
     }
 
 
-    exports.deleteJuegoxUsuarioRepository = async () => {
+    exports.deleteJuegoxUsuarioRepository = async (idJuego,idUsuario) => {
         try{
             const pool = await getSQLConnection();
-            const resultado = pool.request();
-
-            const juegosxusuario = await resultado.query(deleteJuegoxUsuario)
-        }catch(error){
+            const resultado = await pool.request()
+            .input('IdJuego', sql.Int, idJuego)
+            .input('IdUsuario', sql.Int, idUsuario)
+            .query(queries.deleteJuegoxUsuario);
+            
+            return resultado.rowsAffected;
+            }catch(error){
             console.log("Error en deleteJuegoxUsuarioRepository", error)
         }
 

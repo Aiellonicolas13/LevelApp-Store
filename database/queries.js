@@ -37,10 +37,17 @@ module.exports = {
             WHERE IdJuego = @IdJuego`,
 
 
-      getJuegosByUsuario: `SELECT j.IdJuego, j.Nombre
-                         FROM Juegos j
-                         INNER JOIN JuegosxUsuarios jxu ON j.IdJuego = jxu.IdJuego
-                         WHERE jxu.IdUsuario = @IdUsuario`,
+      getJuegosByUsuario: `SELECT j.IdJuego, j.Nombre AS Juego, u.Nombre AS Usuario
+                        FROM Juegos j
+                        INNER JOIN JuegosxUsuarios jxu ON j.IdJuego = jxu.IdJuego
+                        INNER JOIN Usuarios u ON jxu.IdUsuario = u.IdUsuario
+                        WHERE jxu.IdUsuario = @IdUsuario`,
+
+      getUsuariosByJuego: `SELECT u.IdUsuario, u.Nombre AS NombreUsuario, j.Nombre AS NombreJuego
+                     FROM Usuarios u
+                     INNER JOIN JuegosxUsuarios jxu ON u.IdUsuario = jxu.IdUsuario
+                     INNER JOIN Juegos j ON jxu.IdJuego = j.IdJuego
+                     WHERE jxu.IdJuego = @IdJuego`,
 
       addJuegoxUsuario: `INSERT INTO JuegosxUsuarios (IdJuego, IdUsuario) 
                        VALUES (@IdJuego, @IdUsuario)`,
