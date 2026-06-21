@@ -105,3 +105,27 @@ exports.deleteJuegoById = async (req, res) => {
         })
     }
 }
+
+exports.updateJuegoCompleto = async (req, res) => {
+    try{
+        
+        const id = req.params.id
+        console.log('CONTROLLER - updateJuegoCompleto id:'+id)
+        const juegoCompletoActualizado = req.body
+        const juegoCompleto = await serviceBack.updateJuegoCompletoService(id, juegoCompletoActualizado)
+        
+        if (!juegoCompleto){
+            return res.status(404).send(`No se encuentra el juego a actualizar con el id:${id}`)
+        }
+
+        console.log("Juego actualizado correctamente")
+        res.status(200).json(juegoCompleto)
+        
+    } catch (error) {
+        console.log("Error en updateJuegoCompleto", error)
+        res.status(500).send({
+            code: 500,
+            message: "Error al actualizar el juego"
+        })
+    }
+};

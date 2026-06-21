@@ -53,3 +53,8 @@ exports.deleteJuegoByIdService = async (id) => {
         console.log("Error en deleteJuegoByIdService", error)
     }
 }
+
+/*
+exports.updateJuegoCompletoService 
+
+ */
