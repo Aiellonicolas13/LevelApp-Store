@@ -104,16 +104,7 @@ exports.updateJuegoCompletoRepository = async(id, juegoCompletoUpdated) => {
         reqJuegoActualizado.input('Stock', sql.Int, juegoCompletoUpdated.Stock);
         reqJuegoActualizado.input('IdCategoria', sql.Int, juegoCompletoUpdated.IdCategoria);
 
-
-        const queryActualizarJuego = 
-            `UPDATE Juegos
-            SET Nombre = @Nombre,
-                Precio = @Precio,
-                Stock = @Stock,
-                IdCategoria = @IdCategoria
-            WHERE IdJuego = @IdJuego`;
-
-        const juegoCompletoActualizado = await reqJuegoActualizado.query(queryActualizarJuego);
+        const juegoCompletoActualizado = await reqJuegoActualizado.query(updateJuegoCompleto);
 
         if(juegoCompletoActualizado.rowsAffected[0] === 0) {
             return null;
@@ -142,5 +133,54 @@ exports.createJuegoRepository = async(juego) => {
     } catch (error) {
         console.log("Error al agregar juego -repository ", error)
     }
+
+
+
+    // ACA METODOS TABLA NUEVA //
+
+    exports.getJuegosByUsuarioRepository = async (idUsuario) => {
+        try{
+            const pool = await getSQLConnection();
+            const resultado = await pool.request()
+            .input('idUsuario', sql.Int, idUsuario)
+            .query(queries.getJuegosByUsuario);
+
+            return resultado.recordset;
+        } catch(error){
+            console.log("Error en getJuegosByUsuarioRepository", error)
+        }
+
+    }
+
+
+
+
+
+    exports.addJuegoxUsuarioRepository = async () => {
+        try{
+            const pool = await getSQLConnection();
+            const resultado = pool.request();
+
+            const juegosxusuario = await resultado.query(addJuegoxUsuario)
+        }catch(error){
+            console.log("Error en addJuegoxUsuarioRepository", error)
+        }
+    }
+
+
+    exports.deleteJuegoxUsuarioRepository = async () => {
+        try{
+            const pool = await getSQLConnection();
+            const resultado = pool.request();
+
+            const juegosxusuario = await resultado.query(deleteJuegoxUsuario)
+        }catch(error){
+            console.log("Error en deleteJuegoxUsuarioRepository", error)
+        }
+
+    }
+
+
+
 
 }

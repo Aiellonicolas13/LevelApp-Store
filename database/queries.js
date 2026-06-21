@@ -26,5 +26,26 @@ module.exports = {
            (@Nombre
            ,@Precio
            ,@Stock
-           ,@IdCategoria);`
+           ,@IdCategoria);`,
+
+      updateJuegoCompleto = 
+            `UPDATE Juegos
+            SET Nombre = @Nombre,
+                Precio = @Precio,
+                Stock = @Stock,
+                IdCategoria = @IdCategoria
+            WHERE IdJuego = @IdJuego`,
+
+
+      getJuegosByUsuario: `SELECT j.IdJuego, j.Nombre
+                         FROM Juegos j
+                         INNER JOIN JuegosxUsuarios jxu ON j.IdJuego = jxu.IdJuego
+                         WHERE jxu.IdUsuario = @IdUsuario`,
+
+      addJuegoxUsuario: `INSERT INTO JuegosxUsuarios (IdJuego, IdUsuario) 
+                       VALUES (@IdJuego, @IdUsuario)`,
+
+      deleteJuegoxUsuario: `DELETE FROM JuegosxUsuarios 
+                          WHERE IdJuego = @IdJuego AND IdUsuario = @IdUsuario`
+                  
 }
