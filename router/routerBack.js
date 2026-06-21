@@ -14,4 +14,6 @@ routerBack.get('/:id', controllerBack.readJuegoById);
 routerBack.get('/:id/compras', controllerBack.readJuegoByIdCompras);
 routerBack.delete('/:id', controllerBack.deleteJuegoById)
 routerBack.put('/:id', controllerBack.updateJuegoCompleto)
+routerBack.delete('/:id', controllerBack.deleteJuegoById);
+routerBack.post('/', controllerBack.createJuego);
 module.exports = routerBack;

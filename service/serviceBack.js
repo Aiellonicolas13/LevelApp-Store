@@ -63,3 +63,10 @@ exports.updateJuegoCompletoService = async(id,juego) => {
     }
 }
 
+exports.createJuegoService = async (juego) => {
+    try{
+        return await repositoryBack.createJuegoRepository(juego)
+    }catch (error) {
+        console.log("Error en createJuegoService", error)
+    }
+}

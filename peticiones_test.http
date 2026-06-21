@@ -7,3 +7,28 @@ Content-Type: application/json
 }
 ####
 GET http://127.0.0.1:3000/juegos HTTP/1,1
+
+####
+POST http://127.0.0.1:3000/juegos HTTP/1.1
+Content-Type: application/json
+
+{
+    "Nombre": "Minecraft",
+    "Precio": 25000,
+    "Stock": 10,
+    "IdCategoria": 2
+}
+####
+GET http://127.0.0.1:3000/juegos HTTP/1.1
+
+
+####
+PUT http://127.0.0.1:3000/juegos/20 HTTP/1.1
+Content-Type: application/json
+
+{
+    "Nombre": "Retro World Modificado",
+    "Precio": 17000.00,
+    "Stock": 26,
+    "IdCategoria": 4
+}

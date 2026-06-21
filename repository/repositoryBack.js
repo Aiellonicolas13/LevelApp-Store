@@ -127,3 +127,20 @@ exports.updateJuegoCompletoRepository = async(id, juegoCompletoUpdated) => {
 
 
 
+exports.createJuegoRepository = async(juego) => {
+    const {Nombre, Precio, Stock, IdCategoria} = juego
+    const pool = await getSQLConnection()
+
+    try{
+        const resultado = await pool.request()
+        .input('Nombre', sql.NVarChar, Nombre)
+        .input('Precio', sql.Decimal, Precio)
+        .input('Stock', sql.Int, Stock)
+        .input('IdCategoria', sql.Int, IdCategoria)
+        .query(queries.addJuego)
+        return resultado
+    } catch (error) {
+        console.log("Error al agregar juego -repository ", error)
+    }
+
+}
