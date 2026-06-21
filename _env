@@ -2,8 +2,8 @@
 # SQL Server
 ############################
 
-USER_DB = 
-PASSWORD_DB = 
-SERVER_NAME = 
-NAME_DB = 
-PORT_DB = 
+USER_DB=
+PASSWORD_DB=
+SERVER_NAME=
+NAME_DB=LevelAppStore_DB
+PORT_DB=1433

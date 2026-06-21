@@ -104,6 +104,7 @@ exports.updateJuegoCompletoRepository = async(id, juegoCompletoUpdated) => {
         reqJuegoActualizado.input('Stock', sql.Int, juegoCompletoUpdated.Stock);
         reqJuegoActualizado.input('IdCategoria', sql.Int, juegoCompletoUpdated.IdCategoria);
 
+
         const queryActualizarJuego = 
             `UPDATE Juegos
             SET Nombre = @Nombre,
@@ -118,8 +119,11 @@ exports.updateJuegoCompletoRepository = async(id, juegoCompletoUpdated) => {
             return null;
          }
 
-         return {id, ...juegoCompletoUpdated}     
+         return juegoCompletoActualizado;
     } catch(error){
         console.log("Error en updateJuegoCompletoRepository", error)
     }
 }
+
+
+
