@@ -92,3 +92,5 @@ exports.deleteJuegoByIdRepository = async (id) => {
         console.log("Error al eliminar juego -repository ", error)
     }
 }
+
+exports.updateJuegoCompletoRepository = async(id, juegoCompletoUpdated) => {}

@@ -54,7 +54,12 @@ exports.deleteJuegoByIdService = async (id) => {
     }
 }
 
-/*
-exports.updateJuegoCompletoService 
 
- */
+exports.updateJuegoCompletoService = async(id,juego) => {
+    try{
+        return await repositoryBack.
+    } catch(error){
+        console.log("Error en updateJuegoCompletoService", error)
+    }
+}
+
