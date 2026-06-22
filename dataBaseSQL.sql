@@ -32,6 +32,15 @@ CREATE TABLE Compras (
     FOREIGN KEY (IdJuego) REFERENCES Juegos(IdJuego)
 );
 
+
+CREATE TABLE JuegosxUsuarios (
+    IdJuego INT NOT NULL,
+    IdUsuario INT NOT NULL,
+    PRIMARY KEY (IdJuego, IdUsuario),
+    FOREIGN KEY (IdJuego) REFERENCES Juegos(IdJuego),
+    FOREIGN KEY (IdUsuario) REFERENCES Usuarios(IdUsuario)
+);
+
 INSERT INTO Categorias (Nombre)
 VALUES
 ('Accion'),
@@ -83,3 +92,18 @@ VALUES
 (4,5),
 (4,10),
 (4,15);
+
+INSERT INTO JuegosxUsuarios (IdJuego, IdUsuario)
+VALUES
+(1,1),
+(6,1),
+(16,1),
+(3,2),
+(11,2),
+(18,2),
+(8,3),
+(13,3),
+(20,3),
+(5,4),
+(10,4),
+(15,4);
