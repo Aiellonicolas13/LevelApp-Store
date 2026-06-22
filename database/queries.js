@@ -28,7 +28,7 @@ module.exports = {
            ,@Stock
            ,@IdCategoria);`,
 
-      updateJuegoCompleto = 
+      updateJuegoCompleto:
             `UPDATE Juegos
             SET Nombre = @Nombre,
                 Precio = @Precio,
@@ -36,23 +36,32 @@ module.exports = {
                 IdCategoria = @IdCategoria
             WHERE IdJuego = @IdJuego`,
 
+      addCompra: `INSERT INTO Compras 
+                  (IdJuego, IdUsuario) 
+                  VALUES 
+                  (@IdJuego, 
+                  @IdUsuario)`,
 
-      getJuegosByUsuario: `SELECT j.IdJuego, j.Nombre AS Juego, u.Nombre AS Usuario
-                        FROM Juegos j
-                        INNER JOIN JuegosxUsuarios jxu ON j.IdJuego = jxu.IdJuego
-                        INNER JOIN Usuarios u ON jxu.IdUsuario = u.IdUsuario
-                        WHERE jxu.IdUsuario = @IdUsuario`,
+      deleteCompra: `DELETE FROM Compras 
+                  WHERE IdJuego = @IdJuego 
+                  AND IdUsuario = @IdUsuario`,
+      
 
-      getUsuariosByJuego: `SELECT u.IdUsuario, u.Nombre AS NombreUsuario, j.Nombre AS NombreJuego
-                     FROM Usuarios u
-                     INNER JOIN JuegosxUsuarios jxu ON u.IdUsuario = jxu.IdUsuario
-                     INNER JOIN Juegos j ON jxu.IdJuego = j.IdJuego
-                     WHERE jxu.IdJuego = @IdJuego`,
+      getUsuariosByJuego: `SELECT jxu.IdUsuario, u.Nombre AS NombreUsuario
+                         FROM JuegosxUsuarios jxu
+                         INNER JOIN Usuarios u ON jxu.IdUsuario = u.IdUsuario
+                         WHERE jxu.IdJuego = @IdJuego`,
 
       addJuegoxUsuario: `INSERT INTO JuegosxUsuarios (IdJuego, IdUsuario) 
                        VALUES (@IdJuego, @IdUsuario)`,
 
       deleteJuegoxUsuario: `DELETE FROM JuegosxUsuarios 
-                          WHERE IdJuego = @IdJuego AND IdUsuario = @IdUsuario`
+                          WHERE IdJuego = @IdJuego AND IdUsuario = @IdUsuario`,
+
+      getJuegosByUsuario: `SELECT jxu.IdJuego, j.Nombre AS NombreJuego
+                         FROM JuegosxUsuarios jxu
+                         INNER JOIN Juegos j ON jxu.IdJuego = j.IdJuego
+                         WHERE jxu.IdUsuario = @IdUsuario`,
+      
                   
 }

@@ -143,3 +143,73 @@ exports.createJuego = async (req, res) => {
         })
     }
 }
+
+
+exports.createCompra = async (req,res) => {
+    try{
+        const { idJuego, idUsuario } = req.body;
+        const compraHecha = await serviceBack.createCompraService(idJuego, idUsuario)
+        console.log("Compra registrada con éxito")
+       
+        res.status(201).json({ 
+            message: "Compra realizada",
+            data: compraHecha 
+        });
+        
+    } catch(error){
+         console.log("Error en createCompra", error)
+        res.status(500).send({
+        code: 500,
+        message: "Error al realizar la compra"
+        })
+    }
+}
+
+exports.deleteCompra = async (req,res) => {
+    try{
+        const { idJuego, idUsuario } = req.params;
+        const compraCancelada = await serviceBack.deleteCompraService(idJuego, idUsuario)
+
+        console.log("Compra cancelada con éxito")
+        res.status(200).json({ 
+            message: "Compra cancelada",
+            data: compraCancelada
+        });
+
+    } catch(error){
+         console.log("Error en deleteCompra", error)
+        res.status(500).send({
+        code: 500,
+        message: "Error al cancelar la compra"
+        })
+        }
+}
+
+
+exports.readJuegosByUsuario = async (req, res) => {
+    try {
+        const { idUsuario } = req.params; 
+        const juegos = await serviceBack.getJuegosByUsuarioService(idUsuario);
+        
+        res.status(200).json(juegos);
+    } catch (error) {
+        console.log('Error en readJuegosByUsuario', error);
+        res.status(500).json({
+            message: 'Error al obtener los juegos del usuario'
+        });
+    }
+};
+
+exports.readUsuariosByJuego = async (req, res) => {
+    try {
+        const { idJuego } = req.params; 
+        const usuarios = await serviceBack.getUsuariosByJuegoService(idJuego);
+        
+        res.status(200).json(usuarios);
+    } catch (error) {
+        console.log('Error en readUsuariosByJuego', error);
+        res.status(500).json({
+            message: 'Error al obtener los usuarios del juego'
+        });
+    }
+};

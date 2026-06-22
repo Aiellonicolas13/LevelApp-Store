@@ -134,7 +134,7 @@ exports.createJuegoRepository = async(juego) => {
         console.log("Error al agregar juego -repository ", error)
     }
 
-
+}
 
     // METODOS TABLA JuegosXUsuarios //
 
@@ -198,6 +198,31 @@ exports.createJuegoRepository = async(juego) => {
     }
 
 
+    exports.addCompraRepository = async (idJuego, idUsuario) => {
+    try {
+        const pool = await getSQLConnection();
+        const resultado = await pool.request()
+            .input('IdJuego', sql.Int, idJuego)
+            .input('IdUsuario', sql.Int, idUsuario)
+            .query(queries.addCompra);
+        return resultado.rowsAffected;
+    } catch (error) {
+        console.log("Error en addCompraRepository", error);
+    }
+};
 
 
-}
+    exports.deleteCompraRepository = async (idJuego, idUsuario) => {
+        try {
+            const pool = await getSQLConnection();
+            const resultado = await pool.request()
+                .input('IdJuego', sql.Int, idJuego)
+                .input('IdUsuario', sql.Int, idUsuario)
+                .query(queries.deleteCompra);
+            return resultado.rowsAffected;
+        } catch (error) {
+            console.log("Error en deleteCompraRepository", error);
+        }
+    };
+
+    

@@ -32,3 +32,26 @@ Content-Type: application/json
     "Stock": 26,
     "IdCategoria": 4
 }
+
+
+####
+Que juegos compro el usuario
+GET http://127.0.0.1:3000/juegos/usuarios/1/juegos HTTP/1.1
+
+####
+Que usuarios compraron el juego
+GET http://127.0.0.1:3000/juegos/20/usuarios HTTP/1.1
+
+####
+Compra de juego
+POST http://127.0.0.1:3000/juegos/compras HTTP/1.1
+Content-Type: application/json
+
+{
+    "idUsuario": 1,
+    "idJuego": 20
+}
+
+####
+Cancelacion de compra
+DELETE http://127.0.0.1:3000/juegos/compras/20/1 HTTP/1.1
