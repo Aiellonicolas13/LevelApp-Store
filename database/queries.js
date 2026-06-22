@@ -5,26 +5,33 @@ module.exports = {
                    FROM Juegos j
                    INNER JOIN Categorias c ON j.IdCategoria = c.IdCategoria
                    WHERE j.IdJuego = @id`,
+
     getJuegoByIdCompras: 
                     `SELECT j.IdJuego, j.Nombre AS nombreJuego, u.Nombre AS nombreUsuario, u.Email 
                     FROM Juegos j 
                     LEFT JOIN Compras c ON j.IdJuego = c.IdJuego 
                     LEFT JOIN Usuarios u ON c.IdUsuario = u.IdUsuario 
                     WHERE j.IdJuego = @id`,
-    getAllCompras: `SELECT c.IdCompra, u.Nombre AS nombreUsuario,j.Nombre AS nombreJuego 
+
+    getAllCompras: `SELECT c.IdCompra, u.Nombre AS nombreUsuario,j.Nombre AS nombreJuego, j.precio, j.stock
                     FROM Compras c 
                     INNER JOIN Usuarios u ON c.IdUsuario = u.IdUsuario 
                     INNER JOIN Juegos j ON c.IdJuego = j.IdJuego`,
+
     deleteJuegoByIdCompras: `SELECT * FROM Compras WHERE IdJuego = 1;`,
+
     deleteJuegoById:`DELETE FROM Juegos WHERE IdJuego = @id`,
-    addJuego: `INSERT INTO Juegos
+
+    addJuego:
+            `INSERT INTO Juegos
             (Nombre
-           ,Precio
-           ,Stock
-           ,IdCategoria)
-     VALUES
-           (@Nombre
-           ,@Precio
-           ,@Stock
-           ,@IdCategoria);`
+            ,Precio
+            ,Stock
+            ,IdCategoria)
+            OUTPUT INSERTED.*
+      VALUES
+            (@Nombre
+            ,@Precio
+            ,@Stock
+            ,@IdCategoria);`
 }

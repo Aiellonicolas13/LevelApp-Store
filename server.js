@@ -1,5 +1,6 @@
 const express = require('express');
-const routerBack = require('./router/routerBack');
+const juegosRouter = require('./router/juegosRouter');
+const comprasRouter = require('./router/comprasRouter');
 
 const app = express();
 
@@ -8,7 +9,8 @@ const HOST = '127.0.0.1';
 
 app.use(express.json());
 
-app.use('/juegos', routerBack);
+app.use('/juegos', juegosRouter);
+app.use('/compras', comprasRouter);
 
 app.get('/', (req, res) => {
     console.log('* Entrando a la raiz *');
