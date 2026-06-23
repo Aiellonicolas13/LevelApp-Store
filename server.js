@@ -1,8 +1,11 @@
 const express = require('express');
 const juegosRouter = require('./router/juegosRouter');
 const comprasRouter = require('./router/comprasRouter');
+const cors = require('cors');
+
 
 const app = express();
+app.use(cors());
 
 const PORT = 3000;
 const HOST = '127.0.0.1';

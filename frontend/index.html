@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>LevelAppStore</title>
@@ -8,72 +9,83 @@
 
 <body>
 
-<header>
-    <div class="logo">LevelAppStore</div>
+    <header>
+        <div class="logo">LevelAppStore</div>
 
-    <nav>
-        <a href="#listar">Juegos</a>
-        <a href="#buscar">Buscar</a>
-        <a href="#admin">Admin</a>
-        <a href="#usuario">Usuario</a>
-    </nav>
-</header>
+        <nav>
+            <a href="#listar">Juegos</a>
+            <a href="#buscar">Buscar</a>
+            <a href="#admin">Admin</a>
+            <a href="#usuario">Usuario</a>
+        </nav>
+    </header>
 
-<section class="hero">
-    <h1>Tienda de Juegos</h1>
+    <section class="hero">
+        <h1>Tienda de Juegos</h1>
 
-    <button id="btnJuegos">Cargar Juegos</button>
-</section>
+        <button id="btnJuegos">Cargar Juegos</button>
+    </section>
 
-<!-- LISTAR JUEGOS -->
-<section id="listar">
-    <h2 class="section-title">Juegos disponibles</h2>
-    <div id="listaJuegos" class="games-container"></div>
-</section>
+    <!-- LISTAR JUEGOS -->
+    <section id="listar">
+        <h2 class="section-title">Juegos disponibles</h2>
+        <div id="listaJuegos" class="games-container"></div>
+    </section>
 
-<!-- BUSCAR JUEGO -->
-<section id="buscar" class="admin-panel">
-    <h2 class="section-title">Buscar Juego</h2>
+    <!-- BUSCAR JUEGO -->
+    <section id="buscar" class="admin-panel">
+        <h2 class="section-title">Buscar Juego</h2>
 
-    <input type="number" id="idJuego" placeholder="ID del juego">
-    <button id="btnBuscarJuego">Buscar</button>
+        <div id="mensajeError" class="mensaje-error">
+            El juego no se encuentra registrado en la base de datos.
+        </div>
 
-    <div id="juegoEncontrado"></div>
-</section>
+        <input type="number" id="idJuego" placeholder="ID del juego">
+        <button id="btnBuscarJuego">Buscar</button>
 
-<!-- CREAR / ACTUALIZAR -->
-<section id="admin" class="admin-panel">
-    <h2 class="section-title">Administración</h2>
+        <div id="juegoEncontrado"></div>
+    </section>
 
-    <h3>Crear Juego</h3>
-    <input type="text" id="nombre" placeholder="Nombre">
-    <input type="number" id="precio" placeholder="Precio">
-    <input type="number" id="stock" placeholder="Stock">
-    <input type="number" id="categoria" placeholder="ID Categoría">
+    <!-- CREAR / ACTUALIZAR -->
+    <section id="admin" class="admin-panel">
+        <h2 class="section-title">Administración</h2>
 
-    <button id="btnCrear">Crear Juego</button>
+        <h3>Crear Juego</h3>
+        <input type="text" id="nombre" placeholder="Nombre">
+        <input type="number" id="precio" placeholder="Precio">
+        <input type="number" id="stock" placeholder="Stock">
+        <input type="number" id="categoria" placeholder="ID Categoría">
 
-    <hr style="margin:20px 0;">
+        <button id="btnCrear">Crear Juego</button>
 
-    <h3>Actualizar Juego (PATCH)</h3>
-    <input type="number" id="updateId" placeholder="ID del juego">
-    <input type="number" id="updatePrecio" placeholder="Nuevo precio (opcional)">
-    <input type="number" id="updateStock" placeholder="Nuevo stock (opcional)">
+        <hr style="margin:20px 0;">
 
-    <button id="btnActualizar">Actualizar Juego</button>
-</section>
+        <h3>Actualizar Juego (PATCH)</h3>
+        <input type="number" id="updateId" placeholder="ID del juego">
+        <input type="number" id="updatePrecio" placeholder="Nuevo precio (opcional)">
+        <input type="number" id="updateStock" placeholder="Nuevo stock (opcional)">
 
-<!-- JUEGOS POR USUARIO -->
-<section id="usuario" class="users-section">
-    <h2 class="section-title">Juegos de Usuario</h2>
+        <button id="btnActualizar">Actualizar Juego</button>
 
-    <input type="number" id="idUsuario" placeholder="ID Usuario">
-    <button id="btnUsuario">Buscar Juegos del Usuario</button>
+        <hr style="margin:20px 0;">
 
-    <div id="listaJuegosUsuario"></div>
-</section>
+        <h3>Eliminar Juego</h3>
+        <input type="number" id="eliminateId" placeholder="ID del juego">        
+        <button id="btnEliminar">Eliminar Juego</button>
+    </section>
 
-<script src="./js/app.js"></script>
+    <!-- JUEGOS POR USUARIO -->
+    <section id="usuario" class="users-section">
+        <h2 class="section-title">Juegos de Usuario</h2>
+
+        <input type="number" id="idUsuario" placeholder="ID Usuario">
+        <button id="btnUsuario">Buscar Juegos del Usuario</button>
+
+        <div id="listaJuegosUsuario"></div>
+    </section>
+
+    <script src="./js/app.js"></script>
 
 </body>
+
 </html>

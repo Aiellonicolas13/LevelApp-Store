@@ -106,7 +106,10 @@ button:hover{
 .game-info{
     padding:15px;
 }
-
+.idJuego{
+    font-weight:bold;
+    font-size:1rem;
+}
 .price{
     color:#22c55e;
     font-weight:bold;
@@ -143,4 +146,14 @@ input{
     padding:10px;
     border:none;
     border-radius:8px;
+}
+.mensaje-error {
+    display: none;
+    top: 20px;
+    right: 20px;
+    background-color: #ff4d4d;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
 }
