@@ -36,5 +36,14 @@ module.exports = {
             (@Nombre
             ,@Precio
             ,@Stock
-            ,@IdCategoria);`
+            ,@IdCategoria);`,
+      
+      getVentasPorMes: `
+        SELECT
+        SUM(dc.Cantidad) AS TotalJuegosVendidos,
+        SUM(dc.Cantidad * dc.PrecioUnitario) AS TotalRecaudado
+        FROM Compras c
+        INNER JOIN DetalleComprasJuegos dc
+        ON c.IdCompra = dc.IdCompra
+        WHERE MONTH(c.FechaCompra) = @mes;`,
 }

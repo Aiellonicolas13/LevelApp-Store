@@ -20,3 +20,14 @@ exports.getAllComprasService = async () => {
         console.log('* Error en getAllComprasService *', error);
     }
 };
+
+exports.getVentasPorMesService = async (mes) => {
+    try {
+        console.log('* SERVICE - getVentasPorMesService *');
+
+        return await comprasRepository.getVentasPorMesRepository(mes);
+
+    } catch (error) {
+        console.log('* Error en getVentasPorMesService *', error);
+    }
+};
