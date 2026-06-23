@@ -38,6 +38,18 @@ Content-Type: application/json
     "Stock": 5
 }
 
+#### PUT - Actualizar registro completo de un juego
+PUT http://127.0.0.1:3000/juegos/20 HTTP/1.1
+Content-Type: application/json
+
+{
+    "Nombre": "Retro World Modificado",
+    "Precio": 17000.00,
+    "Stock": 26,
+    "IdCategoria": 4
+}
+
+
 ### DELETE - Eliminar un juego por id.
 DELETE http://127.0.0.1:3000/juegos/24 HTTP/1.1
 

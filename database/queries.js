@@ -36,5 +36,15 @@ module.exports = {
             (@Nombre
             ,@Precio
             ,@Stock
-            ,@IdCategoria);`
+            ,@IdCategoria);`,
+
+      updateJuegoCompleto:
+            `UPDATE Juegos
+            SET Nombre = @Nombre,
+                Precio = @Precio,
+                Stock = @Stock,
+                IdCategoria = @IdCategoria
+            WHERE IdJuego = @IdJuego`,
+
+      
 }

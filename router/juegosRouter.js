@@ -9,6 +9,8 @@ juegosRouter.get('/:id', juegosController.readJuegoById);
 
 juegosRouter.patch('/:id', juegosController.updateJuego);
 
+juegosRouter.put('/:id', juegosController.updateJuegoCompleto)
+
 juegosRouter.post('/', juegosController.createJuego);
 
 juegosRouter.delete('/:id', juegosController.deleteJuegoById);
