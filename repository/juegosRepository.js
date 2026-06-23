@@ -45,6 +45,30 @@ exports.updateJuegoRepository = async (id , juegoUpdated) => {
     }
 }
 
+
+exports.updateJuegoCompletoRepository = async(id, juegoCompletoUpdated) => {
+    try{
+        const pool = await getSQLConnection();
+        const reqJuegoActualizado = pool.request();
+
+        reqJuegoActualizado.input('IdJuego', sql.Int, id);
+        reqJuegoActualizado.input('Nombre', sql.VarChar, juegoCompletoUpdated.Nombre);
+        reqJuegoActualizado.input('Precio', sql.Int, juegoCompletoUpdated.Precio);
+        reqJuegoActualizado.input('Stock', sql.Int, juegoCompletoUpdated.Stock);
+        reqJuegoActualizado.input('IdCategoria', sql.Int, juegoCompletoUpdated.IdCategoria);
+
+        const juegoCompletoActualizado = await reqJuegoActualizado.query(queries.updateJuegoCompleto);
+
+        if(juegoCompletoActualizado.rowsAffected[0] === 0) {
+            return null;
+         }
+
+         return { id, ...juegoCompletoUpdated };
+    } catch(error){
+        console.log("Error en updateJuegoCompletoRepository", error)
+    }
+}
+
 exports.getJuegoByIdRepository = async (id) => {
     const pool = await getSQLConnection();
     try {

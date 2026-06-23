@@ -19,6 +19,14 @@ exports.updateJuegoService = async (id , juego) => {
     }
 }
 
+exports.updateJuegoCompletoService = async(id,juego) => {
+    try{
+        return await juegosRepository.updateJuegoCompletoRepository(id,juego)
+    } catch(error){
+        console.log("Error en updateJuegoCompletoService", error)
+    }
+}
+
 exports.getJuegoByIdService = async (id) => {
     try {
         console.log('* SERVICE - getJuegoByIdService *');

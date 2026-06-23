@@ -7,16 +7,19 @@ module.exports = {
                    WHERE j.IdJuego = @id`,
 
     getJuegoByIdCompras: 
-                    `SELECT j.IdJuego, j.Nombre AS nombreJuego, u.Nombre AS nombreUsuario, u.Email 
-                    FROM Juegos j 
-                    LEFT JOIN Compras c ON j.IdJuego = c.IdJuego 
-                    LEFT JOIN Usuarios u ON c.IdUsuario = u.IdUsuario 
-                    WHERE j.IdJuego = @id`,
+                    `SELECT j.IdJuego, j.Nombre,
+                  SUM(cd.Cantidad) AS TotalUnidadesVendidas,
+                  SUM(cd.Cantidad * cd.PrecioUnitario) AS TotalIngresos
+                  FROM DetalleComprasJuegos cd
+                  INNER JOIN Juegos j ON cd.IdJuego = j.IdJuego
+                  WHERE j.IdJuego = @id
+                  GROUP BY j.IdJuego, j.Nombre;`,
 
-    getAllCompras: `SELECT c.IdCompra, u.Nombre AS nombreUsuario,j.Nombre AS nombreJuego, j.precio, j.stock
-                    FROM Compras c 
-                    INNER JOIN Usuarios u ON c.IdUsuario = u.IdUsuario 
-                    INNER JOIN Juegos j ON c.IdJuego = j.IdJuego`,
+    getAllCompras: `SELECT
+                  c.IdCompra, u.Nombre AS Usuario, c.FechaCompra, c.Total
+                  FROM Compras c
+                  INNER JOIN Usuarios u ON c.IdUsuario = u.IdUsuario
+                  ORDER BY c.FechaCompra;`,
 
     deleteJuegoByIdCompras: `SELECT * FROM Compras WHERE IdJuego = 1;`,
 
@@ -33,5 +36,15 @@ module.exports = {
             (@Nombre
             ,@Precio
             ,@Stock
-            ,@IdCategoria);`
+            ,@IdCategoria);`,
+
+      updateJuegoCompleto:
+            `UPDATE Juegos
+            SET Nombre = @Nombre,
+                Precio = @Precio,
+                Stock = @Stock,
+                IdCategoria = @IdCategoria
+            WHERE IdJuego = @IdJuego`,
+
+      
 }
