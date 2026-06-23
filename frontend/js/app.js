@@ -10,6 +10,8 @@ document.getElementById("btnActualizar").addEventListener("click", actualizarJue
 
 document.getElementById("btnUsuario").addEventListener("click", obtenerJuegosUsuario);
 
+document.getElementById("btnEliminar").addEventListener("click", eliminarJuego);
+
 function mostrarError() {
     const mensaje = document.getElementById("mensajeError");
 
@@ -155,6 +157,32 @@ async function actualizarJuego() {
     } catch (error) {
         console.log(error);
         alert("Error al actualizar juego");
+    }
+}
+
+async function eliminarJuego() {
+    const id = document.getElementById("eliminateId").value;
+    if (!id) {
+        alert("Ingrese un ID");
+        return;
+    }
+    try {
+        const respuesta = await fetch(`http://127.0.0.1:3000/juegos/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        if (!respuesta.ok) {
+            throw new Error("No se pudo eliminar el juego");
+        }
+        const data = await respuesta.json();
+        alert("Juego eliminado correctamente");
+        console.log(data);
+        
+    } catch (error) {
+        console.error(error);
+        alert("Error eliminando juego");
     }
 }
 
