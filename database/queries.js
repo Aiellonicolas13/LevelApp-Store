@@ -1,5 +1,11 @@
 module.exports = {
-    getAllJuegos: `SELECT * FROM Juegos`,
+    getAllJuegos: `SELECT j.IdJuego,
+                  j.Nombre,
+                  j.Precio,
+                  j.Stock,
+                  c.Nombre AS Categoria FROM Juegos j
+                  INNER JOIN Categorias c
+                  ON j.IdCategoria = c.IdCategoria`,
 
     getJuegoById: `SELECT j.IdJuego, j.Nombre, j.Precio, j.Stock, c.Nombre AS Categoria
                    FROM Juegos j
@@ -16,7 +22,10 @@ module.exports = {
                   GROUP BY j.IdJuego, j.Nombre;`,
 
     getAllCompras: `SELECT
-                  c.IdCompra, u.Nombre AS Usuario, c.FechaCompra, c.Total
+                  c.IdCompra,
+                  u.Nombre AS Usuario,
+                  CONVERT(VARCHAR(10), c.FechaCompra, 103) AS FechaCompra,
+                  c.Total
                   FROM Compras c
                   INNER JOIN Usuarios u ON c.IdUsuario = u.IdUsuario
                   ORDER BY c.FechaCompra;`,

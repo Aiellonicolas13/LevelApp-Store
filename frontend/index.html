@@ -39,6 +39,9 @@
         <div id="mensajeError" class="mensaje-error">
             El juego no se encuentra registrado en la base de datos.
         </div>
+        <div id="mensajeErrorVacio" class="mensaje-error">
+            Por favor, ingrese un ID de juego válido.
+        </div>
 
         <input type="number" id="idJuego" placeholder="ID del juego">
         <button id="btnBuscarJuego">Buscar</button>
@@ -49,31 +52,54 @@
     <!-- CREAR / ACTUALIZAR -->
     <section id="admin" class="admin-panel">
         <h2 class="section-title">Administración</h2>
-
+        <div id="mensajeErrorCrearJuego" class="mensaje-error">
+            Por favor, complete todos los campos para crear un juego.
+        </div>
         <h3>Crear Juego</h3>
         <input type="text" id="nombre" placeholder="Nombre">
         <input type="number" id="precio" placeholder="Precio">
         <input type="number" id="stock" placeholder="Stock">
-        <input type="number" id="categoria" placeholder="ID Categoría">
+        <select id="categoria">
+            <option value="">Seleccione una categoría</option>
+            <option value="1">Acción</option>
+            <option value="2">Aventura</option>
+            <option value="3">Shooter</option>
+            <option value="4">Plataforma</option>
+        </select>
 
         <button id="btnCrear">Crear Juego</button>
-
+        <div id="mensajeCorrecto" class="mensaje-success">
+            Juego creado correctamente.
+        </div>
         <!-- aca toasty -->
 
         <hr style="margin:20px 0;">
-
+        <div id="mensajeErrorActualizar" class="mensaje-error">
+            Por favor, llene el ID y al menos uno de los campos (precio o stock) para actualizar el juego.
+        </div>
         <h3>Actualizar Juego (PATCH)</h3>
         <input type="number" id="updateId" placeholder="ID del juego">
         <input type="number" id="updatePrecio" placeholder="Nuevo precio (opcional)">
         <input type="number" id="updateStock" placeholder="Nuevo stock (opcional)">
 
         <button id="btnActualizar">Actualizar Juego</button>
-
+        <div id="mensajeSuccessActualizar" class="mensaje-success">
+            Juego actualizado correctamente.
+        </div>
         <hr style="margin:20px 0;">
 
+        <div id="mensajeErrorEliminar" class="mensaje-error">
+            El juego no se encuentra registrado en la base de datos.
+        </div>
+        <div id="mensajeErrorEliminarId" class="mensaje-error">
+            Por favor, llene el ID del juego a eliminar.
+        </div>
         <h3>Eliminar Juego</h3>
         <input type="number" id="eliminateId" placeholder="ID del juego">
         <button id="btnEliminar">Eliminar Juego</button>
+        <div id="mensajeSuccessEliminar" class="mensaje-success">
+            El juego fue eliminado correctamente.
+        </div>
     </section>
 
     <!-- TODAS LAS COMPRAS -->
