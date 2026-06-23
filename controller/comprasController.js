@@ -34,3 +34,22 @@ exports.readAllCompras = async (req, res) => {
         });
     }
 };
+
+exports.readVentasPorMes = async (req, res) => {
+    try {
+        console.log('* CONTROLLER - readVentasPorMes *');
+
+        const { mes } = req.params;
+
+        const ventas = await comprasService.getVentasPorMesService(mes);
+
+        res.status(200).json(ventas);
+
+    } catch (error) {
+        console.log('* Error en readVentasPorMes *', error);
+
+        res.status(500).json({
+            message: 'Error al obtener las ventas del mes'
+        });
+    }
+};

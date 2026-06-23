@@ -54,4 +54,4 @@ GET http://127.0.0.1:3000/compras HTTP/1.1
 GET http://127.0.0.1:3000/compras/1 HTTP/1.1
 
 ### GET BY Mes - Trae las compras totales del mes
-GET http://127.0.0.1:3000/compras/ventas-mes/4 HTTP/1.1
+GET http://127.0.0.1:3000/compras/ventas-mes/5 HTTP/1.1

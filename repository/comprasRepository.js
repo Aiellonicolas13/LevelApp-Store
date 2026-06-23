@@ -26,3 +26,20 @@ exports.getAllComprasRepository = async () => {
         console.log('* Error en getAllComprasRepository *', error);
     }
 };
+
+exports.getVentasPorMesRepository = async (mes) => {
+    const pool = await getSQLConnection();
+
+    try {
+        console.log('* REPOSITORY - getVentasPorMesRepository *');
+
+        const resultado = await pool.request()
+            .input('mes', sql.Int, mes)
+            .query(queries.getVentasPorMes);
+
+        return resultado.recordset[0];
+
+    } catch (error) {
+        console.log('* Error en getVentasPorMesRepository *', error);
+    }
+};

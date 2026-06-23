@@ -46,14 +46,13 @@ module.exports = {
             ,@Precio
             ,@Stock
             ,@IdCategoria);`,
-
-      updateJuegoCompleto:
-            `UPDATE Juegos
-            SET Nombre = @Nombre,
-                Precio = @Precio,
-                Stock = @Stock,
-                IdCategoria = @IdCategoria
-            WHERE IdJuego = @IdJuego`,
-
       
+      getVentasPorMes: `
+        SELECT
+        SUM(dc.Cantidad) AS TotalJuegosVendidos,
+        SUM(dc.Cantidad * dc.PrecioUnitario) AS TotalRecaudado
+        FROM Compras c
+        INNER JOIN DetalleComprasJuegos dc
+        ON c.IdCompra = dc.IdCompra
+        WHERE MONTH(c.FechaCompra) = @mes;`,
 }
