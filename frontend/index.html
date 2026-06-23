@@ -70,18 +70,40 @@
         <hr style="margin:20px 0;">
 
         <h3>Eliminar Juego</h3>
-        <input type="number" id="eliminateId" placeholder="ID del juego">        
+        <input type="number" id="eliminateId" placeholder="ID del juego">
         <button id="btnEliminar">Eliminar Juego</button>
     </section>
 
-    <!-- JUEGOS POR USUARIO -->
-    <section id="usuario" class="users-section">
-        <h2 class="section-title">Juegos de Usuario</h2>
+    <!-- TODAS LAS COMPRAS -->
+    <section class="hero-compras">
+        <h2>Todas las compras</h2>
 
-        <input type="number" id="idUsuario" placeholder="ID Usuario">
-        <button id="btnUsuario">Buscar Juegos del Usuario</button>
+        <button id="btnCompras">Cargar Compras</button>
+    </section>
 
-        <div id="listaJuegosUsuario"></div>
+
+    <!-- LISTAR COMPRAS -->
+    <section id="listarCompras">
+
+        <h2 class="section-title">
+            Compras realizadas
+        </h2>
+
+        <div id="listaCompras" class="games-container"></div>
+
+    </section>
+
+    <!-- BUSCAR COMPRA -->
+    <section id="buscarCompra" class="admin-panel">
+        <h2 class="section-title">
+            Buscar las compras de un juego por su ID
+        </h2>
+        <div id="mensajeErrorCompra" class="mensaje-error">
+            No existen compras para este juego.
+        </div>
+        <input type="number" id="idCompraJuego" placeholder="ID del Juego">
+        <button id="btnBuscarCompra">Buscar Compras</button>
+        <div id="compraEncontrada"></div>
     </section>
 
     <script src="./js/app.js"></script>

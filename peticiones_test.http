@@ -63,4 +63,4 @@ GET http://127.0.0.1:3000/compras HTTP/1.1
 
 
 ### GET BY ID - Trae las compras de un juego por id.
-GET http://127.0.0.1:3000/compras/1 HTTP/1.1
+GET http://127.0.0.1:3000/compras/3 HTTP/1.1
