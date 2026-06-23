@@ -149,15 +149,26 @@ async function obtenerJuegos() {
 async function buscarJuego() {
 
     try {
-        const id = document.getElementById("idJuego").value;
-        const response = await fetch(`${API}/${id}`);
+
+        const contenedor =
+            document.getElementById("juegoEncontrado");
+
+        contenedor.innerHTML = "";
+
+        const id =
+            document.getElementById("idJuego").value;
+
+        const response =
+            await fetch(`${API}/${id}`);
 
         if (!response.ok) {
             throw new Error("Juego no encontrado");
         }
-        const juego = await response.json();
 
-        document.getElementById("juegoEncontrado").innerHTML = `
+        const juego =
+            await response.json();
+
+        contenedor.innerHTML = `
             <div class="user-card">
                 <h3>${juego.Nombre}</h3>
                 <p>Precio: $${juego.Precio}</p>
@@ -165,12 +176,16 @@ async function buscarJuego() {
                 <p>Categoria: ${juego.Categoria}</p>
             </div>
         `;
-    } catch (error) {
-        console.log(error);
-        mostrarError();
-    }
-}
 
+    } catch (error) {
+
+        console.log(error);
+
+        document.getElementById("juegoEncontrado").innerHTML = "";
+
+        mostrarError();
+
+    }}
 async function crearJuego() {
 
     try {
