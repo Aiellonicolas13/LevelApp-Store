@@ -74,10 +74,10 @@
         <!-- aca toasty -->
 
         <hr style="margin:20px 0;">
+        <h3>Actualizar Juego (PATCH)</h3>
         <div id="mensajeErrorActualizar" class="mensaje-error">
             Por favor, llene el ID y al menos uno de los campos (precio o stock) para actualizar el juego.
         </div>
-        <h3>Actualizar Juego (PATCH)</h3>
         <input type="number" id="updateId" placeholder="ID del juego">
         <input type="number" id="updatePrecio" placeholder="Nuevo precio (opcional)">
         <input type="number" id="updateStock" placeholder="Nuevo stock (opcional)">
@@ -91,10 +91,10 @@
         <div id="mensajeErrorEliminar" class="mensaje-error">
             El juego no se encuentra registrado en la base de datos.
         </div>
+        <h3>Eliminar Juego</h3>
         <div id="mensajeErrorEliminarId" class="mensaje-error">
             Por favor, llene el ID del juego a eliminar.
         </div>
-        <h3>Eliminar Juego</h3>
         <input type="number" id="eliminateId" placeholder="ID del juego">
         <button id="btnEliminar">Eliminar Juego</button>
         <div id="mensajeSuccessEliminar" class="mensaje-success">
@@ -126,6 +126,9 @@
         <h2 class="section-title">
             Buscar las compras de un juego por su ID
         </h2>
+        <div id="mensajeErrorCompraId" class="mensaje-error">
+            Por favor, ingrese un ID de juego válido.
+        </div>
         <div id="mensajeErrorCompra" class="mensaje-error">
             No existen compras para este juego.
         </div>
@@ -133,6 +136,35 @@
         <button id="btnBuscarCompra">Buscar Compras</button>
         <div id="compraEncontrada"></div>
     </section>
+    <section id="ventasMes" class="admin-panel">
+    <h2 class="section-title">Ventas por Mes</h2>
+
+    <div id="mensajeErrorVentasMes" class="mensaje-error">
+        Debe seleccionar un mes válido.
+    </div>
+
+    <select id="mesVenta">
+        <option value="">Seleccione un mes</option>
+        <option value="1">Enero</option>
+        <option value="2">Febrero</option>
+        <option value="3">Marzo</option>
+        <option value="4">Abril</option>
+        <option value="5">Mayo</option>
+        <option value="6">Junio</option>
+        <option value="7">Julio</option>
+        <option value="8">Agosto</option>
+        <option value="9">Septiembre</option>
+        <option value="10">Octubre</option>
+        <option value="11">Noviembre</option>
+        <option value="12">Diciembre</option>
+    </select>
+
+    <button id="btnVentasMes">
+        Consultar Ventas
+    </button>
+
+    <div id="resultadoVentasMes"></div>
+</section>
 
     <script src="./js/app.js"></script>
 

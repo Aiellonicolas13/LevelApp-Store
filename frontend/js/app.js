@@ -14,6 +14,8 @@ document.getElementById("btnCompras").addEventListener("click", mostrarOcultarCo
 
 document.getElementById("btnBuscarCompra").addEventListener("click", buscarCompra);
 
+document.getElementById("btnVentasMes").addEventListener("click", obtenerVentasPorMes);
+
 
 let juegosMostrados = false;
 let comprasVisibles = false;
@@ -172,6 +174,15 @@ function mostrarErrorCompra() {
         mensaje.style.display = "none";
 
     }, 3000);
+}
+function mostrarErrorCompraId() {
+    const mensaje = document.getElementById("mensajeErrorCompraId");
+
+    mensaje.style.display = "block";
+
+    setTimeout(() => {
+        mensaje.style.display = "none";
+    }, 5000);
 }
 function mostrarErrorEliminar() {
     const mensaje = document.getElementById("mensajeErrorEliminar");
@@ -424,7 +435,7 @@ async function buscarCompra() {
     try {
         const id = document.getElementById("idCompraJuego").value;
         if (!id) {
-            alert("Ingrese un ID de juego");
+            mostrarErrorCompraId();
             return;
         }
         const response = await fetch(`http://127.0.0.1:3000/compras/${id}`);
@@ -450,4 +461,58 @@ async function buscarCompra() {
         contenedor.innerHTML = "";
         // alert("No se encontraron compras");
     }
+}
+
+async function obtenerVentasPorMes() {
+
+    const mes = document.getElementById("mesVenta").value;
+
+    if (!mes) {
+        mostrarErrorVentasMes();
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            `http://127.0.0.1:3000/compras/ventas-mes/${mes}`
+        );
+
+        if (!response.ok) {
+            throw new Error();
+        }
+
+        const data = await response.json();
+
+        document.getElementById("resultadoVentasMes").innerHTML = `
+            <div class="game-card">
+                <div class="game-info">
+                    <h3>Resumen del Mes</h3>
+                    <p>
+                        Total de juegos vendidos:
+                        ${data.TotalJuegosVendidos}
+                    </p>
+                    <p>
+                        Total recaudado:
+                        $${data.TotalRecaudado}
+                    </p>
+                </div>
+            </div>
+        `;
+
+    } catch (error) {
+        console.log(error);
+        alert("Error al obtener las ventas del mes");
+    }
+}
+
+function mostrarErrorVentasMes() {
+    const mensaje =
+        document.getElementById("mensajeErrorVentasMes");
+
+    mensaje.style.display = "block";
+
+    setTimeout(() => {
+        mensaje.style.display = "none";
+    }, 3000);
 }
