@@ -8,6 +8,8 @@ document.getElementById("btnCrear").addEventListener("click", crearJuego);
 
 document.getElementById("btnActualizar").addEventListener("click", actualizarJuego);
 
+document.getElementById("btnActualizarPut").addEventListener("click", actualizarJuegoPut);
+
 document.getElementById("btnEliminar").addEventListener("click", eliminarJuego);
 
 document.getElementById("btnCompras").addEventListener("click", mostrarOcultarCompras);
@@ -22,78 +24,40 @@ let comprasVisibles = false;
 
 async function mostrarOcultarJuegos() {
 
-    const contenedor =
-        document.getElementById("listaJuegos");
-
-    const boton =
-        document.getElementById("btnJuegos");
-
+    const contenedor = document.getElementById("listaJuegos");
+    const boton = document.getElementById("btnJuegos");
+    const titulo = document.getElementById("section-title");
 
     if (!juegosMostrados) {
-
-
         await obtenerJuegos();
-
-
         contenedor.style.display = "grid";
-
-
         boton.textContent = "Ocultar Juegos";
-
-
+        titulo.style.display = "block";
         juegosMostrados = true;
-
-
     } else {
-
-
         contenedor.style.display = "none";
-
-
+        titulo.style.display = "none";
         boton.textContent = "Cargar Juegos";
-
-
         juegosMostrados = false;
-
     }
-
 }
 
 async function mostrarOcultarCompras() {
-
-    const contenedor =
-        document.getElementById("listaCompras");
-
-    const boton =
-        document.getElementById("btnCompras");
-
+    const contenedor = document.getElementById("listaCompras");
+    const boton = document.getElementById("btnCompras");
+    const titulo = document.getElementById("section-title-compras");
 
     if (!comprasVisibles) {
-
-
         await obtenerCompras();
-
-
         contenedor.style.display = "grid";
-
-
+        titulo.style.display = "block";
         boton.textContent = "Ocultar Compras";
-
-
         comprasVisibles = true;
-
-
     } else {
-
-
         contenedor.style.display = "none";
-
-
+        titulo.style.display = "none";
         boton.textContent = "Cargar Compras";
-
-
         comprasVisibles = false;
-
     }
 
 }
@@ -105,7 +69,7 @@ function mostrarError() {
 
     setTimeout(() => {
         mensaje.style.display = "none";
-    }, 5000); 
+    }, 5000);
 }
 function mostrarErrorActualizar() {
     const mensaje = document.getElementById("mensajeErrorActualizar");
@@ -114,7 +78,7 @@ function mostrarErrorActualizar() {
 
     setTimeout(() => {
         mensaje.style.display = "none";
-    }, 5000); 
+    }, 5000);
 }
 function mostrarSuccess() {
     const mensaje = document.getElementById("mensajeCorrecto");
@@ -123,7 +87,7 @@ function mostrarSuccess() {
 
     setTimeout(() => {
         mensaje.style.display = "none";
-    }, 5000); 
+    }, 5000);
 }
 
 function mensajeSuccessActualizar() {
@@ -133,7 +97,7 @@ function mensajeSuccessActualizar() {
 
     setTimeout(() => {
         mensaje.style.display = "none";
-    }, 5000); 
+    }, 5000);
 }
 function mensajeSuccessEliminar() {
     const mensaje = document.getElementById("mensajeSuccessEliminar");
@@ -142,7 +106,7 @@ function mensajeSuccessEliminar() {
 
     setTimeout(() => {
         mensaje.style.display = "none";
-    }, 5000); 
+    }, 5000);
 }
 function mostrarErrorVacio() {
     const mensaje = document.getElementById("mensajeErrorVacio");
@@ -151,7 +115,16 @@ function mostrarErrorVacio() {
 
     setTimeout(() => {
         mensaje.style.display = "none";
-    }, 5000); 
+    }, 5000);
+}
+function mostrarErrorCrearJuegoCampos() {
+    const mensaje = document.getElementById("mensajeErrorCrearJuegoCampos");
+
+    mensaje.style.display = "block";
+
+    setTimeout(() => {
+        mensaje.style.display = "none";
+    }, 5000);
 }
 function mostrarErrorCrearJuego() {
     const mensaje = document.getElementById("mensajeErrorCrearJuego");
@@ -160,7 +133,7 @@ function mostrarErrorCrearJuego() {
 
     setTimeout(() => {
         mensaje.style.display = "none";
-    }, 5000); 
+    }, 5000);
 }
 function mostrarErrorCompra() {
 
@@ -184,6 +157,15 @@ function mostrarErrorCompraId() {
         mensaje.style.display = "none";
     }, 5000);
 }
+function mostrarErrorActualizarNoId() {
+    const mensaje = document.getElementById("mensajeErrorActualizarNoId");
+
+    mensaje.style.display = "block";
+
+    setTimeout(() => {
+        mensaje.style.display = "none";
+    }, 5000);
+}
 function mostrarErrorEliminar() {
     const mensaje = document.getElementById("mensajeErrorEliminar");
 
@@ -191,7 +173,7 @@ function mostrarErrorEliminar() {
 
     setTimeout(() => {
         mensaje.style.display = "none";
-    }, 5000); 
+    }, 5000);
 }
 function mostrarErrorEliminarId() {
     const mensaje = document.getElementById("mensajeErrorEliminarId");
@@ -200,7 +182,7 @@ function mostrarErrorEliminarId() {
 
     setTimeout(() => {
         mensaje.style.display = "none";
-    }, 5000); 
+    }, 5000);
 }
 async function obtenerJuegos() {
     try {
@@ -233,7 +215,7 @@ async function buscarJuego() {
         contenedor.innerHTML = "";
         const id = document.getElementById("idJuego").value;
         const response = await fetch(`${API}/${id}`);
-        if(id === "") {
+        if (id === "") {
             return mostrarErrorVacio()
         }
         if (!response.ok) {
@@ -258,7 +240,8 @@ async function buscarJuego() {
 
         mostrarError();
 
-    }}
+    }
+}
 async function crearJuego() {
 
     try {
@@ -276,7 +259,10 @@ async function crearJuego() {
             },
             body: JSON.stringify(juego)
         });
-
+        if (document.getElementById("nombre").value === "" || document.getElementById("precio").value === "" || document.getElementById("stock").value === "" || document.getElementById("categoria").value === "") {
+            mostrarErrorCrearJuegoCampos();
+            return;
+        }
         if (!response.ok) {
             throw new Error();
         }
@@ -290,7 +276,7 @@ async function crearJuego() {
         document.getElementById("stock").value = "";
         document.getElementById("categoria").value = "";
         obtenerJuegos();
-        
+
     } catch (error) {
         console.log(error);
         alert("Error al crear juego");
@@ -318,6 +304,11 @@ async function actualizarJuego() {
             },
             body: JSON.stringify(juegoActualizado)
         });
+        if (response.status === 404) {
+            console.log(`No existe un juego con ID ${id}`);
+            mostrarErrorActualizarNoId();
+            return;
+        }
         if (!response.ok) {
             throw new Error();
         }
@@ -330,6 +321,38 @@ async function actualizarJuego() {
         mostrarErrorActualizar();
     }
 }
+async function actualizarJuegoPut() {
+    try {
+
+        const id = document.getElementById("updateId").value;
+
+        const juegoActualizado = {
+            Nombre: document.getElementById("updateNombrePut").value,
+            Precio: Number(document.getElementById("updatePrecioPut").value),
+            Stock: Number(document.getElementById("updateStockPut").value),
+            IdCategoria: Number(document.getElementById("categoriaPut").value)
+        };
+
+        const response = await fetch(`${API}/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(juegoActualizado)
+        });
+
+        if (!response.ok) {
+            throw new Error("Error al actualizar");
+        }
+
+        const data = await response.json();
+        console.log(data);
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 
 async function eliminarJuego() {
     const id = document.getElementById("eliminateId").value;
@@ -350,7 +373,7 @@ async function eliminarJuego() {
         const data = await respuesta.json();
         mensajeSuccessEliminar();
         console.log(data);
-        
+
     } catch (error) {
         console.error(error);
         mostrarErrorEliminar();
@@ -422,7 +445,7 @@ async function obtenerCompras() {
                 </div>
             </div>`;
         });
-    } catch(error) {
+    } catch (error) {
         console.log(error);
         alert(
             "Error al cargar compras"
@@ -445,8 +468,9 @@ async function buscarCompra() {
         const datos = await response.json();
         const contenedor = document.getElementById("compraEncontrada");
         contenedor.innerHTML = "";
-        const compras = Array.isArray(datos) ? datos: [datos];
-        compras.forEach(compra => { contenedor.innerHTML += `
+        const compras = Array.isArray(datos) ? datos : [datos];
+        compras.forEach(compra => {
+            contenedor.innerHTML += `
             <div class="user-card">
                 <h3>Compra ID: ${compra.IdJuego}</h3>
                 <p>Juego: ${compra.Nombre}</p>
@@ -454,8 +478,8 @@ async function buscarCompra() {
                 <p>Total ingresos: ${compra.TotalIngresos} $</p>
             </div>`;
         });
-    } catch(error) {
-        console.log(error);        
+    } catch (error) {
+        console.log(error);
         mostrarErrorCompra();
         const contenedor = document.getElementById("compraEncontrada");
         contenedor.innerHTML = "";
@@ -488,14 +512,8 @@ async function obtenerVentasPorMes() {
             <div class="game-card">
                 <div class="game-info">
                     <h3>Resumen del Mes</h3>
-                    <p>
-                        Total de juegos vendidos:
-                        ${data.TotalJuegosVendidos}
-                    </p>
-                    <p>
-                        Total recaudado:
-                        $${data.TotalRecaudado}
-                    </p>
+                    <p>Total de juegos vendidos:${data.TotalJuegosVendidos}</p>
+                    <p>Total recaudado:$${data.TotalRecaudado}</p>
                 </div>
             </div>
         `;
