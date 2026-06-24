@@ -55,7 +55,6 @@ module.exports = {
         INNER JOIN DetalleComprasJuegos dc
         ON c.IdCompra = dc.IdCompra
         WHERE MONTH(c.FechaCompra) = @mes;`,
-
         updateJuegoCompleto: `
 UPDATE Juegos
 SET Nombre = @Nombre,
