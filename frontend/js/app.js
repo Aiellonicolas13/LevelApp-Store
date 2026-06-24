@@ -80,6 +80,24 @@ function mostrarErrorActualizar() {
         mensaje.style.display = "none";
     }, 5000);
 }
+function mostrarErrorActualizarPut() {
+    const mensaje = document.getElementById("mensajeErrorActualizarPut");
+
+    mensaje.style.display = "block";
+
+    setTimeout(() => {
+        mensaje.style.display = "none";
+    }, 5000);
+}
+function mostrarErrorActualizar2Put() {
+    const mensaje = document.getElementById("mensajeErrorActualizarPut2");
+
+    mensaje.style.display = "block";
+
+    setTimeout(() => {
+        mensaje.style.display = "none";
+    }, 5000);
+}
 function mostrarSuccess() {
     const mensaje = document.getElementById("mensajeCorrecto");
 
@@ -90,8 +108,26 @@ function mostrarSuccess() {
     }, 5000);
 }
 
+function mensajeSuccessActualizarPut() {
+    const mensaje = document.getElementById("mensajeSuccessActualizarPut");
+
+    mensaje.style.display = "block";
+
+    setTimeout(() => {
+        mensaje.style.display = "none";
+    }, 5000);
+}
 function mensajeSuccessActualizar() {
     const mensaje = document.getElementById("mensajeSuccessActualizar");
+
+    mensaje.style.display = "block";
+
+    setTimeout(() => {
+        mensaje.style.display = "none";
+    }, 5000);
+}
+function mensajeSuccessActualizarPut() {
+    const mensaje = document.getElementById("mensajeSuccessActualizarPut");
 
     mensaje.style.display = "block";
 
@@ -166,6 +202,24 @@ function mostrarErrorActualizarNoId() {
         mensaje.style.display = "none";
     }, 5000);
 }
+function mostrarErrorActualizarPutId() {
+    const mensaje = document.getElementById("mensajeErrorActualizar2Put");
+
+    mensaje.style.display = "block";
+
+    setTimeout(() => {
+        mensaje.style.display = "none";
+    }, 5000);
+}
+function mostrarErrorActualizarPutId2() {
+    const mensaje = document.getElementById("mensajeErrorActualizar2Put");
+
+    mensaje.style.display = "block";
+
+    setTimeout(() => {
+        mensaje.style.display = "none";
+    }, 5000);
+}
 function mostrarErrorEliminar() {
     const mensaje = document.getElementById("mensajeErrorEliminar");
 
@@ -176,7 +230,7 @@ function mostrarErrorEliminar() {
     }, 5000);
 }
 function mostrarErrorEliminarId() {
-    const mensaje = document.getElementById("mensajeErrorEliminarId");
+    const mensaje = document.getElementById("mensajeErrorEliminar2");
 
     mensaje.style.display = "block";
 
@@ -312,8 +366,7 @@ async function actualizarJuego() {
         if (!response.ok) {
             throw new Error();
         }
-        const data = await response.json();
-        console.log(data);
+        const data = await response.json();        
         mensajeSuccessActualizar();
         obtenerJuegos();
     } catch (error) {
@@ -324,7 +377,7 @@ async function actualizarJuego() {
 async function actualizarJuegoPut() {
     try {
 
-        const id = document.getElementById("updateId").value;
+        const id = document.getElementById("updateIdPut").value;
 
         const juegoActualizado = {
             Nombre: document.getElementById("updateNombrePut").value,
@@ -340,13 +393,25 @@ async function actualizarJuegoPut() {
             },
             body: JSON.stringify(juegoActualizado)
         });
+        if (document.getElementById("updateIdPut").value === "") {
+            mostrarErrorActualizarPutId2();
+            return;
+        }
+        if (response.status === 404) {
+            mostrarErrorActualizarPutId();
+            return;
+        }
+        
 
-        if (!response.ok) {
-            throw new Error("Error al actualizar");
+        if (document.getElementById("updateIdPut").value === "" || document.getElementById("updateNombrePut").value === "" || document.getElementById("updatePrecioPut").value === "" || document.getElementById("updateStockPut").value === "" || document.getElementById("categoriaPut").value === "") {
+            mostrarErrorActualizarPut();
+            return;
         }
 
+
         const data = await response.json();
-        console.log(data);
+        mensajeSuccessActualizarPut();
+        
 
     } catch (error) {
         console.log(error);

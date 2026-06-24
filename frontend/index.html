@@ -75,10 +75,8 @@
         <div id="mensajeCorrecto" class="mensaje-success">
             Juego creado correctamente.
         </div>
-        <!-- aca toasty -->
 
         <hr style="margin:20px 0;">
-
         <h3>Actualizar juego (PATCH)</h3>
         <div id="mensajeErrorActualizar" class="mensaje-error">
             Por favor, llene el ID y al menos uno de los campos (precio o stock) para actualizar el juego.
@@ -99,12 +97,11 @@
         <div id="mensajeErrorEliminar" class="mensaje-error">
             El juego no se encuentra registrado en la base de datos.
         </div>
-
         <h3>Actualizar juego (PUT)</h3>
-        <div id="mensajeErrorActualizar" class="mensaje-error">
+        <div id="mensajeErrorActualizar2Put" class="mensaje-error">
             Por favor, llene el ID y al menos uno de los campos (precio o stock) para actualizar el juego.
         </div>
-        <div id="mensajeErrorActualizarNoId" class="mensaje-error">
+        <div id="mensajeErrorActualizarPut" class="mensaje-error">
             El id ingresado no corresponde a ningún juego registrado en la base de datos.
         </div>
         <input type="number" id="updateIdPut" placeholder="ID del juego">
@@ -120,15 +117,14 @@
         </select>
 
         <button id="btnActualizarPut">Actualizar Juego</button>
-        <div id="mensajeSuccessActualizar" class="mensaje-success">
+        <div id="mensajeSuccessActualizarPut" class="mensaje-success">
             Juego actualizado correctamente.
         </div>
         <hr style="margin:20px 0;">
-
-        <div id="mensajeErrorEliminar" class="mensaje-error">
+        <div id="mensajeErrorEliminar2" class="mensaje-error">
             El juego no se encuentra registrado en la base de datos.
         </div>
-        
+
         <h3>Eliminar juego</h3>
         <div id="mensajeErrorEliminarId" class="mensaje-error">
             Por favor, llene el ID del juego a eliminar.
@@ -140,15 +136,12 @@
         </div>
     </section>
 
-    <!-- TODAS LAS COMPRAS -->
     <section class="hero-compras">
         <h2>Todas las compras</h2>
 
         <button id="btnCompras">Cargar Compras</button>
     </section>
 
-
-    <!-- LISTAR COMPRAS -->
     <section id="listarCompras">
 
         <h2 class="section-title-compras" id="section-title-compras">
@@ -175,7 +168,7 @@
         <div id="compraEncontrada"></div>
     </section>
     <section id="ventasMes" class="admin-panel">
-        <h2 class="section-title">Ventas por mes en 2026</h2>
+        <h2 class="section-title">Ventas por mes</h2>
 
         <div id="mensajeErrorVentasMes" class="mensaje-error">
             Debe seleccionar un mes válido.
@@ -196,7 +189,11 @@
             <option value="11">Noviembre</option>
             <option value="12">Diciembre</option>
         </select>
-
+        <select>
+            <option>2024</option>
+            <option>2025</option>
+            <option>2026</option>
+        </select>
         <button id="btnVentasMes">
             Consultar Ventas
         </button>
