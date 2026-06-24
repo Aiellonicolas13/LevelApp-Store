@@ -23,18 +23,18 @@
     <section class="hero">
         <h1>Tienda de Juegos</h1>
 
-        <button id="btnJuegos">Cargar Juegos</button>
+        <button id="btnJuegos">Cargar juegos</button>
     </section>
 
     <!-- LISTAR JUEGOS -->
     <section id="listar">
-        <h2 class="section-title">Juegos disponibles</h2>
+        <h2 class="section-titlee" id="section-title">Juegos disponibles</h2>
         <div id="listaJuegos" class="games-container"></div>
     </section>
 
     <!-- BUSCAR JUEGO -->
     <section id="buscar" class="admin-panel">
-        <h2 class="section-title">Buscar Juego</h2>
+        <h2 class="section-title">Buscar juego</h2>
 
         <div id="mensajeError" class="mensaje-error">
             El juego no se encuentra registrado en la base de datos.
@@ -55,7 +55,11 @@
         <div id="mensajeErrorCrearJuego" class="mensaje-error">
             Por favor, complete todos los campos para crear un juego.
         </div>
-        <h3>Crear Juego</h3>
+        <div id="mensajeErrorCrearJuegoCampos" class="mensaje-error">
+            Por favor, complete todos los campos para crear un juego.
+        </div>
+        
+        <h3>Crear juego</h3>
         <input type="text" id="nombre" placeholder="Nombre">
         <input type="number" id="precio" placeholder="Precio">
         <input type="number" id="stock" placeholder="Stock">
@@ -74,9 +78,12 @@
         <!-- aca toasty -->
 
         <hr style="margin:20px 0;">
-        <h3>Actualizar Juego (PATCH)</h3>
+        <h3>Actualizar juego (PATCH)</h3>
         <div id="mensajeErrorActualizar" class="mensaje-error">
             Por favor, llene el ID y al menos uno de los campos (precio o stock) para actualizar el juego.
+        </div>
+        <div id="mensajeErrorActualizarNoId" class="mensaje-error">
+            El id ingresado no corresponde a ningún juego registrado en la base de datos.
         </div>
         <input type="number" id="updateId" placeholder="ID del juego">
         <input type="number" id="updatePrecio" placeholder="Nuevo precio (opcional)">
@@ -91,7 +98,7 @@
         <div id="mensajeErrorEliminar" class="mensaje-error">
             El juego no se encuentra registrado en la base de datos.
         </div>
-        <h3>Eliminar Juego</h3>
+        <h3>Eliminar juego</h3>
         <div id="mensajeErrorEliminarId" class="mensaje-error">
             Por favor, llene el ID del juego a eliminar.
         </div>
@@ -113,7 +120,7 @@
     <!-- LISTAR COMPRAS -->
     <section id="listarCompras">
 
-        <h2 class="section-title">
+        <h2 class="section-title-compras" id="section-title-compras">
             Compras realizadas
         </h2>
 
