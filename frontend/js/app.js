@@ -8,6 +8,8 @@ document.getElementById("btnCrear").addEventListener("click", crearJuego);
 
 document.getElementById("btnActualizar").addEventListener("click", actualizarJuego);
 
+document.getElementById("btnActualizarPut").addEventListener("click", actualizarJuegoPut);
+
 document.getElementById("btnEliminar").addEventListener("click", eliminarJuego);
 
 document.getElementById("btnCompras").addEventListener("click", mostrarOcultarCompras);
@@ -319,6 +321,38 @@ async function actualizarJuego() {
         mostrarErrorActualizar();
     }
 }
+async function actualizarJuegoPut() {
+    try {
+
+        const id = document.getElementById("updateId").value;
+
+        const juegoActualizado = {
+            Nombre: document.getElementById("updateNombrePut").value,
+            Precio: Number(document.getElementById("updatePrecioPut").value),
+            Stock: Number(document.getElementById("updateStockPut").value),
+            IdCategoria: Number(document.getElementById("categoriaPut").value)
+        };
+
+        const response = await fetch(`${API}/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(juegoActualizado)
+        });
+
+        if (!response.ok) {
+            throw new Error("Error al actualizar");
+        }
+
+        const data = await response.json();
+        console.log(data);
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 
 async function eliminarJuego() {
     const id = document.getElementById("eliminateId").value;
@@ -481,7 +515,8 @@ async function obtenerVentasPorMes() {
                     <p>Total de juegos vendidos:${data.TotalJuegosVendidos}</p>
                     <p>Total recaudado:$${data.TotalRecaudado}</p>
                 </div>
-            </div>`;
+            </div>
+        `;
 
     } catch (error) {
         console.log(error);

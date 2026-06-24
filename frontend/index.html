@@ -58,7 +58,7 @@
         <div id="mensajeErrorCrearJuegoCampos" class="mensaje-error">
             Por favor, complete todos los campos para crear un juego.
         </div>
-        
+
         <h3>Crear juego</h3>
         <input type="text" id="nombre" placeholder="Nombre">
         <input type="number" id="precio" placeholder="Precio">
@@ -78,6 +78,7 @@
         <!-- aca toasty -->
 
         <hr style="margin:20px 0;">
+
         <h3>Actualizar juego (PATCH)</h3>
         <div id="mensajeErrorActualizar" class="mensaje-error">
             Por favor, llene el ID y al menos uno de los campos (precio o stock) para actualizar el juego.
@@ -98,6 +99,36 @@
         <div id="mensajeErrorEliminar" class="mensaje-error">
             El juego no se encuentra registrado en la base de datos.
         </div>
+
+        <h3>Actualizar juego (PUT)</h3>
+        <div id="mensajeErrorActualizar" class="mensaje-error">
+            Por favor, llene el ID y al menos uno de los campos (precio o stock) para actualizar el juego.
+        </div>
+        <div id="mensajeErrorActualizarNoId" class="mensaje-error">
+            El id ingresado no corresponde a ningún juego registrado en la base de datos.
+        </div>
+        <input type="number" id="updateIdPut" placeholder="ID del juego">
+        <input type="text" id="updateNombrePut" placeholder="Nuevo nombre">
+        <input type="number" id="updatePrecioPut" placeholder="Nuevo precio">
+        <input type="number" id="updateStockPut" placeholder="Nuevo stock">
+        <select id="categoriaPut">
+            <option value="">Seleccione una categoría</option>
+            <option value="1">Acción</option>
+            <option value="2">Aventura</option>
+            <option value="3">Shooter</option>
+            <option value="4">Plataforma</option>
+        </select>
+
+        <button id="btnActualizarPut">Actualizar Juego</button>
+        <div id="mensajeSuccessActualizar" class="mensaje-success">
+            Juego actualizado correctamente.
+        </div>
+        <hr style="margin:20px 0;">
+
+        <div id="mensajeErrorEliminar" class="mensaje-error">
+            El juego no se encuentra registrado en la base de datos.
+        </div>
+        
         <h3>Eliminar juego</h3>
         <div id="mensajeErrorEliminarId" class="mensaje-error">
             Por favor, llene el ID del juego a eliminar.
@@ -144,34 +175,34 @@
         <div id="compraEncontrada"></div>
     </section>
     <section id="ventasMes" class="admin-panel">
-    <h2 class="section-title">Ventas por mes en 2026</h2>
+        <h2 class="section-title">Ventas por mes en 2026</h2>
 
-    <div id="mensajeErrorVentasMes" class="mensaje-error">
-        Debe seleccionar un mes válido.
-    </div>
+        <div id="mensajeErrorVentasMes" class="mensaje-error">
+            Debe seleccionar un mes válido.
+        </div>
 
-    <select id="mesVenta">
-        <option value="">Seleccione un mes</option>
-        <option value="1">Enero</option>
-        <option value="2">Febrero</option>
-        <option value="3">Marzo</option>
-        <option value="4">Abril</option>
-        <option value="5">Mayo</option>
-        <option value="6">Junio</option>
-        <option value="7">Julio</option>
-        <option value="8">Agosto</option>
-        <option value="9">Septiembre</option>
-        <option value="10">Octubre</option>
-        <option value="11">Noviembre</option>
-        <option value="12">Diciembre</option>
-    </select>
+        <select id="mesVenta">
+            <option value="">Seleccione un mes</option>
+            <option value="1">Enero</option>
+            <option value="2">Febrero</option>
+            <option value="3">Marzo</option>
+            <option value="4">Abril</option>
+            <option value="5">Mayo</option>
+            <option value="6">Junio</option>
+            <option value="7">Julio</option>
+            <option value="8">Agosto</option>
+            <option value="9">Septiembre</option>
+            <option value="10">Octubre</option>
+            <option value="11">Noviembre</option>
+            <option value="12">Diciembre</option>
+        </select>
 
-    <button id="btnVentasMes">
-        Consultar Ventas
-    </button>
+        <button id="btnVentasMes">
+            Consultar Ventas
+        </button>
 
-    <div id="resultadoVentasMes"></div>
-</section>
+        <div id="resultadoVentasMes"></div>
+    </section>
 
     <script src="./js/app.js"></script>
 
