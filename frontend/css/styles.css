@@ -66,8 +66,14 @@ nav a:hover{
     align-items:center;
     text-align:center;
 }
-
-.section-title{
+.section-title-compras{
+    display: none;
+    padding:30px;
+    font-size:2rem;
+    text-align:center;
+}
+.section-titlee{
+    display: none;
     padding:30px;
     font-size:2rem;
     text-align:center;
