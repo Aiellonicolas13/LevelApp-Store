@@ -26,8 +26,8 @@ PATCH http://127.0.0.1:3000/juegos/23 HTTP/1.1
 Content-Type: application/json
 
 {
-    "Precio": 2000,
-    "Stock": 5
+    "Precio": 2,
+    "Stock": 2
 }
 
 ### DELETE - Eliminar un juego por id.

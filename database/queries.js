@@ -33,7 +33,7 @@ module.exports = {
     deleteJuegoByIdCompras: `SELECT * FROM Compras WHERE IdJuego = 1;`,
 
     deleteJuegoById:`DELETE FROM Juegos WHERE IdJuego = @id`,
-
+// ---------------------------
     addJuego:
             `INSERT INTO Juegos
             (Nombre
@@ -46,7 +46,7 @@ module.exports = {
             ,@Precio
             ,@Stock
             ,@IdCategoria);`,
-      
+// ------------------------------
       getVentasPorMes: `
         SELECT
         SUM(dc.Cantidad) AS TotalJuegosVendidos,

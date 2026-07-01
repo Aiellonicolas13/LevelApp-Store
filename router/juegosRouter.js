@@ -2,7 +2,7 @@ const express = require('express');
 const juegosController = require('../controller/juegosController');
 
 const juegosRouter = express.Router();
-juegosRouter.use(express.json());
+
 
 juegosRouter.get('/', juegosController.readAllJuegos);
 juegosRouter.get('/:id', juegosController.readJuegoById);
